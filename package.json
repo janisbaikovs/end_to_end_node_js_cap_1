@@ -1,0 +1,70 @@
+{
+    "name": "cpapp",
+    "version": "1.0.0",
+    "description": "A simple CAP project.",
+    "repository": "<Add your repository here>",
+    "license": "UNLICENSED",
+    "private": true,
+    "dependencies": {
+        "@sap/cds": "^4",
+        "@sap/xsenv": "^3.1.1",
+        "@sap/xssec": "^3.2.2",
+        "express": "^4",
+        "hdb": "^0.18.3",
+        "passport": "^0.4.1"
+    },
+    "engines": {
+        "node": ">=14"
+    },
+    "devDependencies": {
+        "@sap/ux-specification": "^1.90.6",
+        "sqlite3": "^5.0.2"
+    },
+    "scripts": {
+        "start": "cds run",
+        "watch-risks": "cds watch --open risks/webapp/index.html#fe-lrop-v4",
+        "undeploy": "cf undeploy cpapp --delete-services --delete-service-keys"
+    },
+    "eslintConfig": {
+        "extends": "eslint:recommended",
+        "env": {
+            "es2020": true,
+            "node": true,
+            "jest": true,
+            "mocha": true
+        },
+        "globals": {
+            "SELECT": true,
+            "INSERT": true,
+            "UPDATE": true,
+            "DELETE": true,
+            "CREATE": true,
+            "DROP": true,
+            "CDL": true,
+            "CQL": true,
+            "CXL": true,
+            "cds": true
+        },
+        "rules": {
+            "no-console": "off",
+            "require-atomic-updates": "off"
+        }
+    },
+    "sapux": [
+        "app/risks"
+    ],
+    "cds": {
+        "requires": {
+            "db": {
+                "kind": "sql"
+            },
+            "uaa": {
+                "kind": "xsuaa",
+                "credentials": {}
+            }
+        },
+        "hana": {
+            "deploy-format": "hdbtable"
+        }
+    }
+}
